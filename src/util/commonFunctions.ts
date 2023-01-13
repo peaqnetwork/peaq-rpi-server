@@ -1,3 +1,4 @@
+import "@polkadot/api-augment/polkadot";
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import Keyring from '@polkadot/keyring';
 import { KeyringPair } from '@polkadot/keyring/types';
