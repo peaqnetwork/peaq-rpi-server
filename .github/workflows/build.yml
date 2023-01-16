@@ -26,6 +26,7 @@ jobs:
       - run: ls
       - name: Deploy
         uses: s0/git-publish-subdir-action@develop
+        run: ls
         env:
           REPO: self
           BRANCH: build
