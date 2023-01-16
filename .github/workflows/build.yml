@@ -24,9 +24,13 @@ jobs:
       - run: npm install
       - run: npm run build --if-present
       - run: ls
+        with:
+          name: build
+          path: build
       - name: Deploy
         uses: s0/git-publish-subdir-action@develop
-        run: ls
+        with:
+          name: build
         env:
           REPO: self
           BRANCH: build
