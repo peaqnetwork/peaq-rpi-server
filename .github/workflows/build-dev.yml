@@ -1,11 +1,8 @@
-name: Node.js CI
+name: Build RPI Server
 
 on:
   push:
-    branches: [ ci/1203710942401954_rpi-server-build-pipeline ]
-  pull_request:
-    branches: [ ci/1203710942401954_rpi-server-build-pipeline ]
-
+    branches: [ dev ]
 jobs:
   build:
 
