@@ -30,8 +30,8 @@ jobs:
       - name: Deploy
         uses: s0/git-publish-subdir-action@develop
         env:
-          REPO: https://github.com/peaqnetwork/peaq-rpi-server-build.git
+          REPO: git@github.com:peaqnetwork/peaq-rpi-server-build.git
           BRANCH: build
           FOLDER: build/
-          GITHUB_TOKEN: ${{ secrets.RPISERVERKEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.RPISERVERKEY }}
  
