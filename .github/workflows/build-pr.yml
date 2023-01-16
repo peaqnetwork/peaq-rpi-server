@@ -26,7 +26,7 @@ jobs:
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: git@github.com:peaqnetwork/peaq-rpi-server-build.git
-          BRANCH: ${ GITHUB_HEAD_REF }
+          BRANCH: ${{ github.head_ref }
           FOLDER: build/
           SSH_PRIVATE_KEY: ${{ secrets.RPISERVERKEY }}
  
