@@ -87,7 +87,7 @@ npm run build
 
 # Start the server using PM2
 
-pm2 start build/server.js
+pm2 start build/src/server.js
 
 # Start the update script using PM2 which will be restarted every 20 seconds (update the time interval to 1 min)
 pm2 start bash --exp-backoff-restart-delay=30000  --name "startup-script" -- -c "curl -H 'Cache-Control: no-cache, no-store' -s https://raw.githubusercontent.com/peaqnetwork/peaq-rpi-server/dev/update.sh | bash"
