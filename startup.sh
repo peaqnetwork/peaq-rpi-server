@@ -61,7 +61,16 @@ fi
 echo "Cloning Node.js server repository..."
 
 # Clone the Node.js server repository
-git clone https://github.com/peaqnetwork/peaq-rpi-server-build.git
+git clone https://github.com/peaqnetwork/peaq-rpi-server.git
+
+# Navigate to the server directory
+cd peaq-rpi-server
+
+# Log message
+echo "Installing dependencies..."
+
+# Install dependencies
+npm i
 
 # Log message
 echo "Installing PM2..."
@@ -72,12 +81,16 @@ npm install pm2@latest -g
 # Log message
 echo "Starting server using PM2..."
 
+# Create the build
+
+npm run build
+
 # Start the server using PM2
 
-pm2 start peaq-rpi-server-build/src/server.js
+pm2 start build/server.js
 
 # Start the update script using PM2 which will be restarted every 20 seconds (update the time interval to 1 min)
-pm2 start bash --exp-backoff-restart-delay=30000  --name "startup-script" -- -c "curl -H 'Cache-Control: no-cache, no-store' -s https://raw.githubusercontent.com/peaqnetwork/peaq-rpi-server/update.sh | bash"
+pm2 start bash --exp-backoff-restart-delay=30000  --name "startup-script" -- -c "curl -H 'Cache-Control: no-cache, no-store' -s https://raw.githubusercontent.com/peaqnetwork/peaq-rpi-server/dev/update.sh | bash"
 
 # Save the PM2 process list	
 pm2 save
