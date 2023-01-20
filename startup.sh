@@ -39,6 +39,16 @@ fi
 # Update package index files
 sudo apt-get update
 
+# Check if git is installed
+if ! command -v git &> /dev/null
+then
+    # Log message
+    echo "Installing git..."
+
+    # Install git
+    sudo apt-get install -y git
+fi
+
 # Check if Nginx is installed
 if ! command -v nginx &> /dev/null
 then
