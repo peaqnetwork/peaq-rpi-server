@@ -5,11 +5,12 @@
 # export PATH=$PATH:$pm2_path
 
 cd ~
-version=1.0
+version=1.1
 stored_version=$(cat .update/version 2>/dev/null)
 
 run_script() {
-  mkdir test_auto_updates
+  cd peaq-rpi-server
+  git pull
 }
 
 if [ ! -d ".update" ]; then
