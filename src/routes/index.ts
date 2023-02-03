@@ -2,9 +2,9 @@ import express from 'express';
 
 const router = express.Router();
 
-import item from '../modules/Item';
+import machines from '../modules/Machines';
 
 
-router.use('/item', item);
+router.use('/machines', machines);
 
 export default router;

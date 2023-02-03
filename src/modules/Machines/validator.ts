@@ -3,7 +3,7 @@ import Joi from 'joi';
 import { RESPONSE_TYPES } from '../../util/constants';
 import { sendResponse } from '../../util/responses';
 
-export const createNFTItemValidator = function (req: Request, res: Response, next: NextFunction) {
+export const createItemValidator = function (req: Request, res: Response, next: NextFunction) {
 
     const schema = Joi.object().keys({
         title: Joi.string().required(),
