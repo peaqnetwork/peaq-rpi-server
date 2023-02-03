@@ -5,7 +5,7 @@
 # export PATH=$PATH:$pm2_path
 
 cd ~
-version=1.1
+version=1.2
 stored_version=$(cat .update/version 2>/dev/null)
 
 run_script() {
