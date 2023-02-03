@@ -12,7 +12,6 @@ import { KeyringPair } from '@polkadot/keyring/types';
 import {   peaqDidDocumentInterface,
 } from './util/types';
 import { ApiPromise } from '@polkadot/api';
-import { listenToEvents } from './util/networkOprations';
 
 declare global {
     var machineKeyPair: KeyringPair;
@@ -49,6 +48,7 @@ const io = new Server(httpServer, {
     }
 });
 socket(io);
+
 
 
 httpServer.listen(process.env.PORT, () => {
