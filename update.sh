@@ -5,12 +5,13 @@
 # export PATH=$PATH:$pm2_path
 
 cd ~
-version=1.2
+version=1.3
 stored_version=$(cat .update/version 2>/dev/null)
 
 run_script() {
   cd peaq-rpi-server
   git pull
+  npm run build
 }
 
 if [ ! -d ".update" ]; then

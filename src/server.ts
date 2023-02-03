@@ -50,8 +50,6 @@ const io = new Server(httpServer, {
 });
 socket(io);
 
-listenToEvents();
-
 
 httpServer.listen(process.env.PORT, () => {
     console.log('App  is running on port: ', process.env.PORT);
