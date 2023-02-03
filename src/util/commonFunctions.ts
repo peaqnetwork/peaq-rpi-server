@@ -111,15 +111,17 @@ export const getDIDDocument = async (keyPair: KeyringPair) => {
   global.didDocument = doc.toObject() as any;
 };
 
-const getNetworkApi = async () => {
+export const getNetworkApi = async () => {
   try {
+    if (global.networkApi) return global.networkApi;
     const api = new ApiPromise({
       provider: new WsProvider(PEAQ_AGUNG_NETWORK),
     });
     await api.isReadyOrError;
+    global.networkApi = api;
     return api;
   } catch (error) {
-    console.error('getCrustNetworkApi error', error);
+    console.error('getNetworkApi error', error);
     throw error;
   }
 };

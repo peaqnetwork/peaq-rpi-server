@@ -11,11 +11,13 @@ import { getDIDDocument, getMachineKeyPair } from './util/commonFunctions';
 import { KeyringPair } from '@polkadot/keyring/types';
 import {   peaqDidDocumentInterface,
 } from './util/types';
+import { ApiPromise } from '@polkadot/api';
+import { listenToEvents } from './util/networkOprations';
 
 declare global {
     var machineKeyPair: KeyringPair;
     var didDocument:   peaqDidDocumentInterface;
-
+    var networkApi: ApiPromise;
   }
 
 const app = express();
@@ -33,6 +35,7 @@ app.use(cors());
 app.use('/api', routes);
 
 getMachineKeyPair().then((pair) => {
+    global.networkApi = null;
     global.machineKeyPair = pair;
     getDIDDocument(pair);
 });
@@ -46,6 +49,8 @@ const io = new Server(httpServer, {
     }
 });
 socket(io);
+
+listenToEvents();
 
 
 httpServer.listen(process.env.PORT, () => {
