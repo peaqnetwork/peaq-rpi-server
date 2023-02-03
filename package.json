@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "pi server",
   "engines": {
-    "node": ">= 16.13 <17"
+    "node": ">= 16.13"
   },
   "devDependencies": {
     "@jest-mock/express": "^1.4.5",

@@ -2,9 +2,9 @@ import express from 'express';
 
 const router = express.Router();
 
-import nft from '../modules/Item';
+import item from '../modules/Item';
 
 
-router.use('/nft', nft);
+router.use('/item', item);
 
 export default router;
