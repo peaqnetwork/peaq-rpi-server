@@ -11,7 +11,6 @@ stored_version=$(cat .update/version 2>/dev/null)
 run_script() {
   cd peaq-rpi-server
   git pull
-  pm2 restart 0
 }
 
 if [ ! -d ".update" ]; then
