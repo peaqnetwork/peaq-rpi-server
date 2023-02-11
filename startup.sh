@@ -57,6 +57,52 @@ then
 
     # Install Nginx
     sudo apt-get install -y nginx
+
+    # Configure Nginx to use SSL
+    sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=US/ST=State/L=City/O=OrgName/OU=IT Department/CN=example.com"
+
+    sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.old
+
+    # Create the default Nginx configuration file if it doesn't exist
+    if [ ! -f /etc/nginx/sites-available/default ]; then
+        sudo touch /etc/nginx/sites-available/default
+    fi
+    # Give the default Nginx configuration file proper permissions
+    sudo chmod 777 /etc/nginx/sites-available/default
+    # Configure Nginx
+    sudo cat > /etc/nginx/sites-available/default <<EOF
+        server {
+            listen 80;
+            listen [::]:80;
+            server_name _;
+            return 301 https://\$host\$request_uri;
+        }
+
+        server {
+            listen 443 ssl;
+            listen [::]:443 ssl;
+            server_name _;
+
+            ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
+            ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
+
+            location /api/ {
+                proxy_pass http://localhost:3001/;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade \$http_upgrade;
+                proxy_set_header Connection 'upgrade';
+                proxy_set_header Host \$host;
+                proxy_cache_bypass \$http_upgrade;
+            }
+
+            location / {
+                root /var/www/html;
+            }
+        }
+EOF
+
+    sudo chmod o-w /etc/nginx/sites-available/default
+    sudo systemctl restart nginx
 fi
 
 # Create the local script file

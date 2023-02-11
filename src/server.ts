@@ -31,7 +31,9 @@ app.use(express.json({
 }));
 
 app.use(cors());
-app.use('/api', routes);
+app.use('/', () => {
+
+}, routes);
 
 getMachineKeyPair().then((pair) => {
     global.networkApi = null;
