@@ -75,38 +75,38 @@ sudo chmod 777 /etc/nginx/sites-available/default
 
 echo "Configuring Nginx..."
     # Configure Nginx
-    sudo cat > /etc/nginx/sites-available/default <<EOF
-        server {
-            listen 80;
-            listen [::]:80;
-            server_name _;
-            return 301 https://\$host\$request_uri;
-        }
+sudo cat > /etc/nginx/sites-available/default <<EOF
+server {
+    listen 80;
+    listen [::]:80;
+    server_name _;
+    return 301 https://\$host\$request_uri;
+}
 
-        server {
-            listen 443 ssl;
-            listen [::]:443 ssl;
-            server_name _;
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name _;
 
-            ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
-            ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
+    ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
+    ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
 
-            location /api/ {
-                proxy_pass http://localhost:3001/;
-                proxy_http_version 1.1;
-                proxy_set_header Upgrade \$http_upgrade;
-                proxy_set_header Connection 'upgrade';
-                proxy_set_header Host \$host;
-                proxy_cache_bypass \$http_upgrade;
-            }
+    location /api/ {
+        proxy_pass http://localhost:3001/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host \$host;
+        proxy_cache_bypass \$http_upgrade;
+    }
 
-            location / {
-                root /var/www/html;
-            }
-        }
+    location / {
+        root /var/www/html;
+    }
+}
 EOF
 
-sudo chmod o-w /etc/nginx/sites-available/default
+# sudo chmod o-w /etc/nginx/sites-available/default
 sudo systemctl restart nginx
 
 # Create the local script file
