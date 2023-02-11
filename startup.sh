@@ -138,6 +138,11 @@ echo "Installing PM2..."
 # Install PM2
 npm install pm2@latest -g
 
+echo "Installing PM2 Logrotate..."
+
+# Install PM2 Logrotate
+pm2 install pm2-logrotate
+
 # Log message
 echo "Starting server using PM2..."
 

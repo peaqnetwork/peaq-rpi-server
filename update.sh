@@ -35,6 +35,6 @@ else
     echo "Running script" | tee -a .update/logs.txt
     run_script || { echo "Error: Failed to run script" | tee -a .update/logs.txt; exit 1; }
   else
-    echo "Skipping script because stored version ($stored_version) is greater than or equal to current version ($version)" | tee -a .update/logs.txt
+    echo "Skipping script because stored version ($stored_version) is greater than or equal to current version ($version)"
   fi
 fi
