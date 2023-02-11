@@ -57,22 +57,23 @@ then
 
     # Install Nginx
     sudo apt-get install -y nginx
+fi
 
-    echo "Creating SSL certificate..."
-    # Configure Nginx to use SSL
-    sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=US/ST=State/L=City/O=OrgName/OU=IT Department/CN=example.com"
+echo "Creating SSL certificate..."
+# Configure Nginx to use SSL
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=US/ST=State/L=City/O=OrgName/OU=IT Department/CN=example.com"
 
-    sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.old
+sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.old
 
-    echo "Creating Nginx configuration file..."
-    # Create the default Nginx configuration file if it doesn't exist
-    if [ ! -f /etc/nginx/sites-available/default ]; then
+echo "Creating Nginx configuration file..."
+# Create the default Nginx configuration file if it doesn't exist
+if [ ! -f /etc/nginx/sites-available/default ]; then
         sudo touch /etc/nginx/sites-available/default
-    fi
-    # Give the default Nginx configuration file proper permissions
-    sudo chmod 777 /etc/nginx/sites-available/default
+fi
+# Give the default Nginx configuration file proper permissions
+sudo chmod 777 /etc/nginx/sites-available/default
 
-    echo "Configuring Nginx..."
+echo "Configuring Nginx..."
     # Configure Nginx
     sudo cat > /etc/nginx/sites-available/default <<EOF
         server {
@@ -105,9 +106,8 @@ then
         }
 EOF
 
-    sudo chmod o-w /etc/nginx/sites-available/default
-    sudo systemctl restart nginx
-fi
+sudo chmod o-w /etc/nginx/sites-available/default
+sudo systemctl restart nginx
 
 # Create the local script file
 # touch local_script.sh
