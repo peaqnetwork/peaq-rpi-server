@@ -106,7 +106,7 @@ server {
 }
 EOF
 
-# sudo chmod o-w /etc/nginx/sites-available/default
+sudo chmod o-w /etc/nginx/sites-available/default
 sudo systemctl restart nginx
 
 # Create the local script file
