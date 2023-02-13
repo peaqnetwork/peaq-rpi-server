@@ -61,7 +61,7 @@ fi
 
 echo "Creating SSL certificate..."
 # Configure Nginx to use SSL
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=US/ST=State/L=City/O=OrgName/OU=IT Department/CN=example.com"
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=US/ST=State/L=City/O=OrgName/OU=IT Department/CN=$(hostname).com"
 
 sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.old
 
