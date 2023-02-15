@@ -31,6 +31,9 @@ app.use(express.json({
 }));
 
 app.use(cors());
+app.get('/', (_, res) => {
+    res.send('PI Server is running');
+});
 app.use('/', routes);
 
 getMachineKeyPair().then((pair) => {
