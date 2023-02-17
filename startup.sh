@@ -56,7 +56,7 @@ then
     echo "Installing Nginx..."
 
     # Install Nginx
-    sudo apt-get install -y nginx
+    sudo apt-get install -y nginx --fix-missing
 fi
 
 echo "Creating SSL certificate..."
