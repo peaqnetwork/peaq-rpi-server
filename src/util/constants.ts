@@ -25,4 +25,4 @@ export const RESPONSE_TYPES = {
     }
 }
 
-export const PEAQ_AGUNG_NETWORK = "wss://wsspc1.agung.peaq.network";
+export const PEAQ_AGUNG_NETWORK = "wss://wsspc1-qa.agung.peaq.network";
