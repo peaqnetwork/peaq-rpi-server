@@ -55,20 +55,8 @@ then
     # Log message
     echo "Installing Nginx..."
 
-    # Add the official Nginx repository key
-    wget http://nginx.org/keys/nginx_signing.key
-    sudo apt-key add nginx_signing.key
-    sudo rm -f nginx_signing.key
-
-    # Add the official Nginx repository to the apt sources
-    sudo sh -c "echo 'deb http://nginx.org/packages/mainline/ubuntu/ $(lsb_release -cs) nginx\ndeb-src http://nginx.org/packages/mainline/ubuntu/ $(lsb_release -cs) nginx' > /etc/apt/sources.list.d/nginx.list"
-
-    # Update package index files again to include the Nginx repository
-    sudo apt-get update
-
     # Install Nginx
-    sudo apt-get install -y nginx
-
+    sudo apt-get install -y nginx --fix-missing
 fi
 
 echo "Creating SSL certificate..."
